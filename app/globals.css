@@ -7,6 +7,7 @@
   --color-second: #ccccff;
 }
 @layer components {
+
   .container {
     @apply px-8 py-12  flex  flex-col mb-4 items-center justify-center 
    ring-2 ring-slate-100 shadow-md shadow-slate-400
@@ -20,19 +21,28 @@
     @apply grid grid-cols-1 md:grid-cols-2  mt-8 mb-16  lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4   gap-8 justify-items-center;
   }
 
+
   .card-sm {
     @apply bg-slate-200 px-2 py-1 rounded-bl-md right-0 top-0 rounded-tr-md;
   }
   .banner {
     @apply rounded-md p-8  bg-first text-second;
   }
+
+    
+ 
 }
 @layer utilities {
+ 
+  .text-card{
+    @apply bg-second rounded-md ring-2 ring-slate-400 shadow-lg shadow-slate-900 p-4 text-[19px] font-semibold text-primary min-w-[250px] text-justify 
+  }
+
   .input {
     @apply outline-none w-sm ring-1 ring-slate-400 shadow-sm shadow-slate-300;
   }
     .tech-tooltip{
-    @apply group-hover:block absolute -top-7 left-0  hidden p-1  rounded-lg bg-slate-400 text-white text-[12px]
+    @apply group-hover:block absolute -top-7 left-0  hidden p-1  rounded-lg bg-slate-400 text-white text-[12px] 
   }
   .flex-row-c{
     @apply flex flex-row  items-center
@@ -51,9 +61,16 @@
   .flex-between {
     @apply flex flex-row justify-between items-center;
   }
+  .green-btn{
+    @apply bg-green-400 p-2 font-semibold  rounded-full w-[130px] h-[40px] text-white
+  }
+  .red-button{
+    @apply bg-red-500 font-semibold p-2 w-[130px] rounded-full h-[40px]  text-white
+  }
 }
 
 @layer base {
+
   h1 {
     @apply text-[32px] uppercase;
   }

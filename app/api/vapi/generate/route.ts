@@ -9,8 +9,9 @@ export async function GET(){
 }
 
 export async function POST(request:Request){
-  console.log(request.json())
-const{type,role,level,techstack,amount,userid}=await request.json();
+  const req=await request.json()
+  console.log(req)
+const{type,role,level,techstack,amount,userid}=req;
 try {
   console.log("hi")
   const {text:questions}=await generateText({

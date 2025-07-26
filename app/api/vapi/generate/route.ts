@@ -37,7 +37,7 @@ prompt:`Prepare questions for a job interview.
     userId:userid,
     finalized:true,
     coverImage:getRandomInterviewCover(),
-    createdAt:new Date().toISOString
+    createdAt:new Date().toISOString()
   }
 
   await db.collection("interviews").add(interview);

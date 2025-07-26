@@ -3,6 +3,7 @@ import Image from "next/image";
 import  InterviewCard  from "@/components/InterviewCard";
 import { dummyInterviews } from "@/constants";
 export default function Home() {
+  console.log(process.env.NEXT_PUBLIC_VAPI_WEB_TOKEN!)
   return (
     <>
       <section>

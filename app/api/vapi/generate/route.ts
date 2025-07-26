@@ -44,6 +44,6 @@ prompt:`Prepare questions for a job interview.
   return Response.json({success:true},{status:200})
 } catch (error) {
   console.log(error);
-  return Response.json({success:false,data:error},{status:500})
+  return Response.json({success:false,error:error},{status:500})
 }
 }

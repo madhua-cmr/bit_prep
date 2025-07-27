@@ -147,10 +147,10 @@ const isCallInactiveOrFinished=callstatus===Callstatus.INACTIVE||callstatus===Ca
 
   return (
 <>
-<div className='flex-between gap-8'>
+<div className='sm:flex-row sm:justify-between items-center max-sm:justify-center flex flex-col gap-8 '>
   <div className='container gap-8'>
  
-    <div className='relative flex-row-cen w-[130px] h-[130px] rounded-full bg-slate-400'>
+    <div className='relative flex-row-cen  w-[130px] h-[130px] rounded-full bg-slate-400'>
 <Image src="/robo1.jpeg" width={100} height={100} alt="robo" className='rounded-full object-fit'/>
         {isSpeaking&& <div className=' absolute opacity-50 flex-row-cen w-[130px] h-[130px] rounded-full bg-slate-400 animate-ping'>
           </div>}

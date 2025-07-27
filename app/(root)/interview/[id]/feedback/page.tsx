@@ -33,7 +33,7 @@ const page = async({params}:RouteParams) => {
         const comments=cate.comment.split(".")
         comments.pop()
        return  <div key={index} className="leading-10 text-[18px]">
-          <h3 className="font-semibold">{`${index+1} . ${cate?.name} (${cate.score} / 20)`} </h3>
+          <h3 className="font-semibold">{`${index+1} . ${cate?.name} (${cate.score} / 100)`} </h3>
           <ul className=" leading-8 list-disc list-inside">
             {comments.map((comm,index)=>(
               <li key={index}>{comm}</li>

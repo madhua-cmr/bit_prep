@@ -9,12 +9,12 @@
 @layer components {
 
   .container {
-    @apply px-8 py-12  flex  flex-col mb-4 items-center justify-center 
+    @apply p-10  flex max-w-[340px] sm:w-[350px] flex-col mb-4 items-center justify-center 
    ring-2 ring-slate-100 shadow-md shadow-slate-400
     rounded-lg;
   }
   .card-bg {
-    @apply rounded-md w-[380px]  h-[380] ring-1 ring-blue-200 shadow-lg shadow-blue-600 p-6;
+    @apply rounded-md w-[350px]  h-[390] ring-1 ring-blue-200 shadow-lg shadow-blue-600 p-6;
   }
 
   .interview-section {
@@ -39,7 +39,7 @@
   }
 
   .input {
-    @apply outline-none w-sm ring-1 ring-slate-400 shadow-sm shadow-slate-300;
+    @apply outline-none w-[300px] sm:w-[350px] ring-1 ring-slate-400 shadow-sm shadow-slate-300;
   }
     .tech-tooltip{
     @apply group-hover:block absolute -top-7 left-0  hidden p-1  rounded-lg bg-slate-400 text-white text-[12px] 

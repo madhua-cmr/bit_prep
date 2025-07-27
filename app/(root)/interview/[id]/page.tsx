@@ -15,7 +15,7 @@ const page = async({params}:RouteParams) => {
     
   }
   const interview=await getInterviewDetailsById(id);
-    console.log(interview)
+
   return (
   <div className="flex-c">
     <div className="flex flex-row justify-between items-start ">

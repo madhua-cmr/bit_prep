@@ -1,6 +1,7 @@
 "use client"
 
 import { interviewer } from "@/constants";
+import { generateFeedback } from "@/lib/general.action";
 import { cn } from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
 import Image from "next/image"
@@ -21,7 +22,7 @@ const Agent = ({userName,type,userId,interviewId,questions}:AgentProps) => {
   const [isSpeaking,setIsSpeaking]=useState(false);
   const [callstatus,setCallstatus]=useState<Callstatus>(Callstatus.INACTIVE)
 const[messages,setMessages]=useState<savedMessage[]>([]);
-
+  const [latestMessage, setLatestMessage] = useState<string>("");
 
 
 useEffect(()=>{
@@ -64,12 +65,15 @@ vapi.off('speech-end',onSpeechEnd)
 
 }
 },[])
-async function  handleGenerateFeedback(messages:savedMessage[]){
+
+useEffect(()=>{
+ if (messages.length > 0) {
+      setLatestMessage(messages[messages.length - 1].content);
+    }
+
+  async function  handleGenerateFeedback(messages:savedMessage[]){
      try {
-      const {success,id}={
-        success:true,
-        id:"feedback-id"
-      }
+      const {success,feedbackId:id}=await generateFeedback({userId,interviewId,transcript:messages})
       if(success&&id){
         router.push(`/interview/${interviewId}/feedback`)
       }else{
@@ -82,17 +86,18 @@ async function  handleGenerateFeedback(messages:savedMessage[]){
         router.push("/");
       }
 }
-useEffect(()=>{
+
+
   if(callstatus===Callstatus.FINISHED){
     if(type==="generate"){
 router.push("/");
     }else{
      handleGenerateFeedback(messages);
-    
+      
       
     }
   } 
-},[messages,callstatus,type,userId])
+},[messages, callstatus, interviewId, router, type, userId])
 
 const handleCall=async()=>{
   setCallstatus(Callstatus.CONNECTING);
@@ -135,7 +140,7 @@ const handleDisconnect=async()=>{
 
 }
 
-const latestMessage=messages[messages?.length-1]?.content;
+
 
 
 const isCallInactiveOrFinished=callstatus===Callstatus.INACTIVE||callstatus===Callstatus.FINISHED

@@ -14,7 +14,7 @@
     rounded-lg;
   }
   .card-bg {
-    @apply rounded-md max-w-[380px]  min-h-[380] ring-1 ring-blue-200 shadow-lg shadow-blue-600 p-6;
+    @apply rounded-md w-[380px]  h-[380] ring-1 ring-blue-200 shadow-lg shadow-blue-600 p-6;
   }
 
   .interview-section {
@@ -47,7 +47,9 @@
   .flex-row-c{
     @apply flex flex-row  items-center
   }
-
+  .flex-r{
+    @apply flex flex-row gap-4
+  }
   .flex-row-cen {
     @apply flex flex-row justify-center items-center
     gap-4;
@@ -62,10 +64,10 @@
     @apply flex flex-row justify-between items-center;
   }
   .green-btn{
-    @apply bg-green-400 p-2 font-semibold  rounded-full w-[130px] h-[40px] text-white
+    @apply bg-green-400 p-2 font-semibold  rounded-full w-[130px] h-[40px] text-white my-4 cursor-pointer
   }
   .red-button{
-    @apply bg-red-500 font-semibold p-2 w-[130px] rounded-full h-[40px]  text-white
+    @apply bg-red-500 font-semibold p-2 w-[130px] rounded-full h-[40px]  text-white my-4 cursor-pointer
   }
 }
 

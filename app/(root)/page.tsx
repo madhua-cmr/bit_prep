@@ -1,17 +1,19 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import  InterviewCard  from "@/components/InterviewCard";
-import { dummyInterviews } from "@/constants";
+
 import {  getUser } from "@/lib/admin.action";
 import {getInterviews, getInterviewsByuserId,} from "@/lib/general.action";
 
 export default async function Home() {
   const user=await getUser();
-  const myinterviews=getInterviewsByuserId(user?.id!);
-  const haspastInterviews=myinterviews?.length>0;
+  const[myinterviews,interviews]=await Promise.all([
+getInterviewsByuserId(user?.id),
+getInterviews({userId:user?.id})
+  ])
+  const haspastInterviews=myinterviews?.length!>0;
 
-  const interviews=await getInterviews({userId:user?.id!});
-  const hasInterviews=interviews?.length>0;
+  const hasInterviews=interviews?.length!>0;
  
   return (
     <>
@@ -23,7 +25,7 @@ export default async function Home() {
               Practice anytime, get instant feedback, and boost your confidence
               with personalized AI coaching.
             </h3>
-            <Button className="w-[200px] max-sm:w-full  bg-second text-black">
+            <Button className="w-[200px] max-sm:w-full  bg-second text-black hover:text-white ">
               Get Started for free
             </Button>
           </div>
@@ -43,7 +45,13 @@ export default async function Home() {
         <div className="interview-section">
           {haspastInterviews?(
       myinterviews?.map((interview)=>(
-        <InterviewCard key={interview.id} {...interview}/>
+        <InterviewCard     key={interview.id}
+                userId={user?.id}
+                id={interview.id}
+                role={interview.role}
+                type={interview.type}
+                techstack={interview.techstack}
+                createdAt={interview.createdAt}/>
       ))):(    <p>You haven&apos;t attend any interviews yet</p>)
           }
         
@@ -53,7 +61,13 @@ export default async function Home() {
                         <div className="interview-section">
           {hasInterviews?(
      interviews?.map((interview)=>(
-        <InterviewCard key={interview.id} {...interview} />
+        <InterviewCard   key={interview.id}
+                userId={user?.id}
+                id={interview.id}
+                role={interview.role}
+                type={interview.type}
+                techstack={interview.techstack}
+                createdAt={interview.createdAt}/>
       ))
           ):(     <p>There are no Interviews</p>)}
        

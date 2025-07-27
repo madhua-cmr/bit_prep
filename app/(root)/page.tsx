@@ -4,6 +4,7 @@ import  InterviewCard  from "@/components/InterviewCard";
 
 import {  getUser } from "@/lib/admin.action";
 import {getInterviews, getInterviewsByuserId,} from "@/lib/general.action";
+import Link from "next/link";
 
 export default async function Home() {
   const user=await getUser();
@@ -26,6 +27,7 @@ getInterviews({userId:user?.id})
               with personalized AI coaching.
             </h3>
             <Button className="w-[200px] max-sm:w-full  bg-second text-black hover:text-white ">
+              <Link href="/interview"></Link>
               Get Started for free
             </Button>
           </div>

@@ -1,5 +1,6 @@
 "use client"
 
+import { interviewer } from "@/constants";
 import { cn } from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
 import Image from "next/image"
@@ -15,7 +16,7 @@ interface savedMessage{
   role:'user'|'system'|'assistant',
   content:string
 }
-const Agent = ({userName,type,userId}:AgentProps) => {
+const Agent = ({userName,type,userId,interviewId,questions}:AgentProps) => {
   const router=useRouter();
   const [isSpeaking,setIsSpeaking]=useState(false);
   const [callstatus,setCallstatus]=useState<Callstatus>(Callstatus.INACTIVE)
@@ -63,9 +64,34 @@ vapi.off('speech-end',onSpeechEnd)
 
 }
 },[])
-
+async function  handleGenerateFeedback(messages:savedMessage[]){
+     try {
+      const {success,id}={
+        success:true,
+        id:"feedback-id"
+      }
+      if(success&&id){
+        router.push(`/interview/${interviewId}/feedback`)
+      }else{
+            console.log("Something went wrong");
+        router.push("/");
+      }
+        
+      } catch (error) {
+        console.log("Error in gettting feedback",error);
+        router.push("/");
+      }
+}
 useEffect(()=>{
-  if(callstatus===Callstatus.FINISHED) router.push("/");
+  if(callstatus===Callstatus.FINISHED){
+    if(type==="generate"){
+router.push("/");
+    }else{
+     handleGenerateFeedback(messages);
+    
+      
+    }
+  } 
 },[messages,callstatus,type,userId])
 
 const handleCall=async()=>{
@@ -84,12 +110,29 @@ const handleCall=async()=>{
     }
   }
 )
-}
+}else{
+  let formattedQuestions='';
+  if(questions){
+     formattedQuestions=questions.map((question)=>(
+      `-${question}`
+     )).join('\n');
+  }
+    
+  await vapi.start(interviewer,{
+ variableValues:{
+     questions:formattedQuestions
+ }
+  })
+  }
+
 }
 
 const handleDisconnect=async()=>{
+
   setCallstatus(Callstatus.FINISHED);
+
   vapi.stop()
+
 }
 
 const latestMessage=messages[messages?.length-1]?.content;
@@ -123,15 +166,23 @@ const isCallInactiveOrFinished=callstatus===Callstatus.INACTIVE||callstatus===Ca
       </div>
 
        <div className="flex-row-cen">
+
       {callstatus!=="ACTIVE"?(
-  <button className="green-btn flex-row-cen relative" onClick={handleCall}><span className={cn(' absolute animate-ping rounded-full opacity-80',callstatus!=Callstatus.CONNECTING&&'hidden')}>
+  <button className="green-btn flex-row-cen relative" onClick={handleCall}>
+    <span className={cn('  animate-ping rounded-full opacity-80 w-10 h-10  absolute bg-slate-100',callstatus!=Callstatus.CONNECTING && 'hidden')}/>
+    <span className="relative ">
     {isCallInactiveOrFinished?'Call':'. . .'}
-    </span></button>
+    </span>
+    </button>
+
       ):(
+
 <button className="red-button  flex-row-cen " onClick={handleDisconnect}>
   <span>End</span>
 </button>
+
       )}
+
      </div>
 
       <div className="flex-row-cen">

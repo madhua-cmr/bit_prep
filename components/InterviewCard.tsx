@@ -4,7 +4,7 @@ import dayjs from "dayjs"
 import { getRandomInterviewCover } from '@/lib/utils'
 import Link from 'next/link'
 import DisplayTechIcons from './DisplayTechIcons'
-const InterviewCard = ({id,userId,role,type, techstack ,level ,questions, finalized ,createdAt}) => {
+const InterviewCard = ({id,userId,role,type, techstack ,level ,questions, finalized ,createdAt}:Interview) => {
   const feedback=null as Feedback|null;
   const normalizedType=/mix/gi.test(type)?'Mixed':type;
   const formatteddate=dayjs(feedback?.createdAt||createdAt||Date.now()).format('MMM D, YYYY')

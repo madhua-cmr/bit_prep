@@ -11,7 +11,7 @@ const RootLayout = async({children}:{children:React.ReactNode}) => {
   <>
   <div className=" w-full p-4 sm:w-[90%] flex flex-c  ">
   <div className="flex-between">
-    <div className="flex-row-cen"><Image src="./logo.svg" alt="logo" width={50} height={50}></Image>
+    <div className="flex-row-cen"><Image src="/logo.svg" alt="logo" width={50} height={50}></Image>
     <h1>Bitprep</h1>
     </div>
     <div></div>

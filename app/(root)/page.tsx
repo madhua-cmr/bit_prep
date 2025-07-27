@@ -2,8 +2,17 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import  InterviewCard  from "@/components/InterviewCard";
 import { dummyInterviews } from "@/constants";
-export default function Home() {
-  console.log(process.env.NEXT_PUBLIC_VAPI_WEB_TOKEN!)
+import {  getUser } from "@/lib/admin.action";
+import {getInterviews, getInterviewsByuserId,} from "@/lib/general.action";
+
+export default async function Home() {
+  const user=await getUser();
+  const myinterviews=getInterviewsByuserId(user?.id!);
+  const haspastInterviews=myinterviews?.length>0;
+
+  const interviews=await getInterviews({userId:user?.id!});
+  const hasInterviews=interviews?.length>0;
+ 
   return (
     <>
       <section>
@@ -32,30 +41,23 @@ export default function Home() {
       <section >
         <h2 >Interview history</h2>
         <div className="interview-section">
-          {dummyInterviews.length>0&&(
-      dummyInterviews.map((interview)=>(
+          {haspastInterviews?(
+      myinterviews?.map((interview)=>(
         <InterviewCard key={interview.id} {...interview}/>
-      ))
-          )}
-          {dummyInterviews.length==0&&(
-            <p>You haven&apos;t attend any interviews yet</p>
-          )}
-      
+      ))):(    <p>You haven&apos;t attend any interviews yet</p>)
+          }
+        
                     </div>
 
                       <h2 className="mb-8">Start a New Interview</h2>
                         <div className="interview-section">
-          {dummyInterviews.length>0&&(
-      dummyInterviews.map((interview)=>(
-        <InterviewCard key={interview.id} {...interview}/>
+          {hasInterviews?(
+     interviews?.map((interview)=>(
+        <InterviewCard key={interview.id} {...interview} />
       ))
-          )}
-          {dummyInterviews.length==0&&(
-            <p>There are no Interviews</p>
-          )}
-        <div className="interview-section">
+          ):(     <p>There are no Interviews</p>)}
        
-                    </div>
+      
                     </div>
 
       </section>

@@ -161,7 +161,7 @@ const isCallInactiveOrFinished=callstatus===Callstatus.INACTIVE||callstatus===Ca
  <div className='container gap-8'>
  
       <div className='relative flex-row-cen w-[130px] h-[130px] rounded-full bg-slate-400'>
-<Image src="/profile.svg" width={100} height={100} alt="robo" className='rounded-full object-fit'/>
+<Image src="/profile.svg" width={130} height={130} alt="robo" className='rounded-full object-fit'/>
           {isSpeaking&& <div className=' absolute opacity-50 flex-row-cen w-[130px] h-[130px] rounded-full bg-slate-400 animate-ping'></div>}
         </div>
            <h3>{userName}</h3>

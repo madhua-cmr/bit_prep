@@ -26,9 +26,9 @@ getInterviews({userId:user?.id})
               Practice anytime, get instant feedback, and boost your confidence
               with personalized AI coaching.
             </h3>
-            <Button className="w-[200px] max-sm:w-full  bg-second text-black hover:text-white ">
-              <Link href="/interview"></Link>
-              Get Started for free
+            <Button className="w-[200px] max-sm:w-full  bg-second text-black hover:text-white cursor-pointer">
+              <Link href="/interview">   Get Started for free</Link>
+           
             </Button>
           </div>
           <div className="">

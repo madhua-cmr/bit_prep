@@ -72,7 +72,7 @@ await signIn({email,idToken})
     }
   }
   return (
-    <div className="flex flex-col items-center justify-center  " >
+    <div className="flex flex-col items-center justify-center  gap-8  p-4" >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 container">
           {!isSignin && (

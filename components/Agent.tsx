@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
 import Image from "next/image"
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 enum Callstatus{
  ACTIVE="ACTIVE",
  INACTIVE="INACTIVE",
@@ -19,11 +19,10 @@ interface savedMessage{
 }
 const Agent = ({userName,type,userId,interviewId,questions}:AgentProps) => {
   const router=useRouter();
-  const [isSpeaking,setIsSpeaking]=useState(false);
+const[speaking,setIsSpeaking]=useState(false);
   const [callstatus,setCallstatus]=useState<Callstatus>(Callstatus.INACTIVE)
-const[messages,setMessages]=useState<savedMessage[]>([]);
-  const [latestMessage, setLatestMessage] = useState<string>("");
-
+const[messages,setMessages]=useState<savedMessage[]>([])
+const[latestMessage,setLatestMessage]=useState("");
 
 useEffect(()=>{
 const onCallStart=()=>setCallstatus(Callstatus.ACTIVE);
@@ -37,12 +36,23 @@ const onMessage=(message:Message)=>{
       role:message.role,
       content:message.transcript
     }
-setMessages((prev)=>[...prev,newMessage])
+    
+ 
+setMessages((prev: savedMessage[])=>[...prev,newMessage])
+
   }
 }
 
-const onSpeechStart=()=>setIsSpeaking(true);
-const onSpeechEnd=()=>setIsSpeaking(false);
+const onSpeechStart = () => {
+ 
+    setIsSpeaking(true);
+  
+};
+
+
+const onSpeechEnd=()=>{
+setIsSpeaking(false)
+}
 const onError=(error:Error)=>{
   console.log("Error",error);
 }
@@ -100,9 +110,10 @@ router.push("/");
 },[messages, callstatus, interviewId, router, type, userId])
 
 const handleCall=async()=>{
+  console.log("hi")
   setCallstatus(Callstatus.CONNECTING);
   if(type==="generate"){
-
+console.log("hello")
   await vapi.start(
     undefined,
     undefined,
@@ -114,6 +125,7 @@ const handleCall=async()=>{
       userid:userId
     }
   }
+
 )
 }else{
   let formattedQuestions='';
@@ -147,22 +159,22 @@ const isCallInactiveOrFinished=callstatus===Callstatus.INACTIVE||callstatus===Ca
 
   return (
 <>
-<div className='sm:flex-row sm:justify-between items-center max-sm:justify-center flex flex-col gap-8 '>
-  <div className='container gap-8'>
+<div className='sm:flex-row sm:justify-around items-center max-sm:justify-center flex flex-col gap-8 '>
+  <div className='container w-[300px]'>
  
-    <div className='relative flex-row-cen  w-[130px] h-[130px] rounded-full bg-slate-400'>
-<Image src="/robo1.jpeg" width={100} height={100} alt="robo" className='rounded-full object-fit'/>
-        {isSpeaking&& <div className=' absolute opacity-50 flex-row-cen w-[130px] h-[130px] rounded-full bg-slate-400 animate-ping'>
+    <div className='relative flex-row-cen  w-[130px] h-[130px] rounded-full bg-two'>
+<Image src="/robot1.svg" width={130} height={130} alt="robo" className='rounded-full object-cover '/>
+        {speaking&& <div className=' absolute opacity-50 flex-row-cen w-[130px] h-[130px] rounded-full bg-two animate-ping'>
           </div>}
         </div>
            <h3>AI Interviewer</h3>
         </div>
  
- <div className='container gap-8'>
+ <div className='container w-[300px]'>
  
-      <div className='relative flex-row-cen w-[130px] h-[130px] rounded-full bg-slate-400'>
-<Image src="/profile.svg" width={130} height={130} alt="robo" className='rounded-full object-fit'/>
-          {isSpeaking&& <div className=' absolute opacity-50 flex-row-cen w-[130px] h-[130px] rounded-full bg-slate-400 animate-ping'></div>}
+      <div className='relative flex-row-cen w-[130px] h-[130px] rounded-full bg-two'>
+<Image src="/profile.svg" width={130} height={130} alt="human" className='rounded-full object-fit'/>
+          {speaking&& <div className=' absolute opacity-50 flex-row-cen w-[130px] h-[130px] rounded-full bg-two animate-ping'></div>}
         </div>
            <h3>{userName}</h3>
         </div>
@@ -174,7 +186,7 @@ const isCallInactiveOrFinished=callstatus===Callstatus.INACTIVE||callstatus===Ca
 
       {callstatus!=="ACTIVE"?(
   <button className="green-btn flex-row-cen relative" onClick={handleCall}>
-    <span className={cn('  animate-ping rounded-full opacity-80 w-10 h-10  absolute bg-slate-100',callstatus!=Callstatus.CONNECTING && 'hidden')}/>
+    <span className={cn('  animate-ping rounded-full opacity-80 w-10 h-10  absolute bg-two',callstatus!=Callstatus.CONNECTING && 'hidden')}/>
     <span className="relative ">
     {isCallInactiveOrFinished?'Call':'. . .'}
     </span>

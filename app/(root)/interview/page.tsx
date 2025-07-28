@@ -7,7 +7,7 @@ const page = async() => {
   const user=await getUser();
 
   return (
-    <div className='flex-c '>
+    <div className='flex-c text-center p-8'>
       <h2>Generate Interview</h2>
 <Agent userName={user?.name} userId={user?.id} type="generate" />
    

@@ -17,7 +17,7 @@ const page = async({params}:RouteParams) => {
   const interview=await getInterviewDetailsById(id);
 
   return (
-  <div className="flex-c">
+  <div className="flex-c p-8">
     <div className="flex flex-row gap-4 justify-between items-start ">
  <Image src={getRandomInterviewCover()} alt="companylogo" width={50} height={50}></Image>
    <div className="flex-c">

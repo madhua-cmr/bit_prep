@@ -18,33 +18,31 @@ getInterviews({userId:user?.id})
  
   return (
     <>
-      <section>
-        <div className="banner  flex-between">
-          <div className="flex-c">
-            <h2>Ace Your Next Interview with AI-Powered Mock Interviews</h2>
-            <h3>
+      <section className="bg-[url('/home.jpg')] bg-cover bg-center w-screen text-a">
+        <div className="relative  h-[450px]">
+          
+             <div className=" w-full absolute md:left-5 lg:left-56 p-16">
+          
+          
+          <div className="flex flex-col gap-8 max-w-[500px]">
+            <h1>Ace Your Next Interview with AI-Powered Mock Interviews</h1>
+            <h2 className=" text-justify">
               Practice anytime, get instant feedback, and boost your confidence
               with personalized AI coaching.
-            </h3>
-            <Button className="w-[200px] max-sm:w-full  bg-second text-black hover:text-white cursor-pointer">
-              <Link href="/interview">   Get Started for free</Link>
+            </h2>
+            <Button className="max-w-[250px] p-4 max-sm:w-full  ring-1 ring-slate-600 shadow-lg shadow-slate-900 bg-three text-shadow-white text-[18px] hover:bg-blue-400 cursor-pointer">
+              <Link href="/interview">Create your own interview</Link>
            
             </Button>
+            </div>
           </div>
-          <div className="">
-            <Image
-              src="/robot.png"
-              alt="robot"
-              width={300}
-              height={300}
-              className="rounded-md max-sm:hidden"
-            />
-          </div>
+       
+         
         </div>
       </section>
-      <section >
-        <h2 >Interview history</h2>
-        <div className="interview-section">
+      <section  className=" text-center mt-8">
+        <h2 >Interviews created by you</h2>
+        <div className="interview-section  ">
           {haspastInterviews?(
       myinterviews?.map((interview)=>(
         <InterviewCard     key={interview.id}
@@ -54,13 +52,12 @@ getInterviews({userId:user?.id})
                 type={interview.type}
                 techstack={interview.techstack}
                 createdAt={interview.createdAt}/>
-      ))):(    <p>You haven&apos;t attend any interviews yet</p>)
+      ))):(    <p className="text-center">You haven&apos;t attend any interviews yet</p>)
           }
         
                     </div>
-
-                      <h2 className="mb-8">Start a New Interview</h2>
-                        <div className="interview-section">
+              <h2 className="mb-8">More Interviews for you</h2>
+                        <div className="interview-section ">
           {hasInterviews?(
      interviews?.map((interview)=>(
         <InterviewCard   key={interview.id}
@@ -70,11 +67,13 @@ getInterviews({userId:user?.id})
                 type={interview.type}
                 techstack={interview.techstack}
                 createdAt={interview.createdAt}/>
+                  
       ))
-          ):(     <p>There are no Interviews</p>)}
-       
+          ):(  <div className="text-center w-full ">
+  <h3>There are no Interviews</h3>
+</div> )}
+     </div>
       
-                    </div>
 
       </section>
     </>

@@ -13,7 +13,8 @@ const page = async({params}:RouteParams) => {
   console.log(feedback)
   const date=await dayjs(feedback?.createdAt).format('MMM D YYYY')
   return (
-    <div className="flex-col-cen gap-8">
+<><div className="p-10 w-full md:w-[1/2vw]">
+    <div className="flex-col-cen   gap-8 ">
       <div className="flex-c gap-4">
         <h1>Feedback on the Interview - {interview?.role}</h1>
         <div className="flex-between">
@@ -24,7 +25,7 @@ const page = async({params}:RouteParams) => {
         </div>
 
       </div>
-  <div className="h-0.5 w-full bg-slate-400 rounded-full"></div>
+  <div className="h-0.5 bg-three  w-full  rounded-full"></div>
       <div className="mb-4">
         <p className="leading-8 text-[18px] font-medium">{feedback?.finalAssessment}</p>
         {feedback?.categoryScores&&(<div className="my-4"><h2 className="my-4">Breakdown of the Interview:</h2>
@@ -66,9 +67,10 @@ const page = async({params}:RouteParams) => {
      
     </div>
     <div>
-      <Button className="text-[18px] text-white p-2 "><Link href="/">Back to dashboard</Link></Button>
+      <Button className="text-[18px] bg-three text-[#f9f9f9] p-2 "><Link href="/">Back to dashboard</Link></Button>
     </div>
     </div>
+    </div></>
   )
 }
 

@@ -10,10 +10,10 @@ const RootLayout = async({children}:{children:React.ReactNode}) => {
     }
   return (
   <>
-  <div className=" w-full p-4 sm:w-[90%] flex flex-c  ">
-  <div className="flex-between">
+  <div className="flex-col-cen">
+  <div className="flex-between h-[100px] text-white p-8 bg-a w-screen">
     <Link href="/">
-    <div className="flex-row-cen"><Image src="/logo.svg" alt="logo" width={50} height={50}></Image>
+    <div className="flex-row-cen "><Image src="/logo.png" alt="logo" className="rounded-full " width={50} height={50}></Image>
     <h1>Bitprep</h1>
  
     </div>

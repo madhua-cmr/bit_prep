@@ -41,7 +41,7 @@ const InterviewCard = async ({
           height={50}
         ></Image>
       </div>
-      <h2>{role} Interview</h2>
+      <h2 className="capitalize">{role} Interview</h2>
       <div className="flex-between">
         <div className="flex-row-cen">
           <Image
@@ -70,11 +70,11 @@ const InterviewCard = async ({
       </p>
       <div className="flex-between">
         <DisplayTechIcons techStack={techstack} />
-        <Button>
+        <Button className="bg-three  text-one ring-1 ring-slate-400 shadow-lg shadow-slate-400  text-shadow-white text-md p-2 hover:bg-a ">
           <Link
             href={feedback ? `/interview/${id}/feedback` : `interview/${id}`}
           >
-            {feedback ? "View Feedback" : "See Interview"}
+            {feedback ? "View Feedback" : "Attend Interview"}
           </Link>
         </Button>
       </div>

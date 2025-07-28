@@ -74,7 +74,7 @@ await signIn({email,idToken})
   return (
     <div className="flex flex-col items-center justify-center  gap-8  p-4" >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 container">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 bg-one ring-1 ring-slate-200 shadow-lg shadow-slate-400 rounded-lg flex flex-col px-5 py-15 gap-4 sm:px-8 ">
           {!isSignin && (
             <FormField
               control={form.control}
@@ -97,16 +97,19 @@ await signIn({email,idToken})
             name="password"
             type="password"
           />
-          <Button type="submit" className="button">
+          <Button type="submit" className="text-[18px] p-1 bg-three hover:bg-blue-600">
             {isSignin ? "Sign in" : "Create an account"}
           </Button>
         </form>
       </Form>
-      <p>
+      <p className="text-[18px] text-a font-medium">
         {isSignin ? "No account yet ?" : "Have an account already?"}
-        <Link  href={isSignin ? "/sign-up" : "/sign-in"}>
+       <Link  href={isSignin ? "/sign-up" : "/sign-in"}>
+        <span className="text-blue-400 font-semibold">
           {isSignin ? " Sign up" : " Sign in"}
+            </span>
         </Link>
+     
       </p>
     </div>
   );

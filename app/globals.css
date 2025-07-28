@@ -5,44 +5,55 @@
 @theme {
   --color-first: #292966;
   --color-second: #ccccff;
+   --color-a:#043873;
+ 
+
+
+ --color-one:#FFFFFF;
+ --color-two:#2C2C2C;
+ --color-three:#0D46D7;
+
+ 
 }
 @layer components {
 
   .container {
-    @apply p-8  flex  flex-col mb-4 items-center justify-center 
-   ring-2 ring-slate-100 shadow-md shadow-slate-400
-    rounded-lg;
+    @apply  flex  flex-col my-8 items-center justify-center 
+ ring-1 ring-slate-200 shadow-lg shadow-slate-400 bg-one  h-[300px]
+    rounded-lg gap-4 ;
   }
   .card-bg {
-    @apply rounded-md w-[350px]  h-[390] ring-1 ring-blue-200 shadow-lg shadow-blue-600 p-6;
+    @apply rounded-md w-[350px] bg-one  h-[390] ring-1 ring-slate-200 shadow-lg shadow-slate-400  p-6;
   }
 
   .interview-section {
     @apply grid grid-cols-1 md:grid-cols-2  mt-8 mb-16  lg:grid-cols-2 xl:grid-cols-3    gap-8 justify-items-center;
   }
-
+  .button-blue{
+    @apply ring-1 ring-slate-400 shadow-lg shadow-slate-400 hover:bg-blue-800
+  }
 
   .card-sm {
-    @apply bg-slate-200 px-2 py-1 rounded-bl-md right-0 top-0 rounded-tr-md;
+    @apply bg-three text-one ring-1 ring-slate-400 shadow-lg shadow-slate-400 px-2 py-1 rounded-bl-md right-0 top-0 rounded-tr-md;
   }
-  .banner {
-    @apply rounded-md p-8  bg-first text-second;
-  }
+
 
     
  
 }
 @layer utilities {
- 
+ .justify-around{
+  @apply flex flex-row items-center justify-around 
+ }
   .text-card{
-    @apply bg-second rounded-md ring-2 ring-slate-400 shadow-lg shadow-slate-900 p-4 text-[19px] font-semibold text-primary min-w-[250px] text-justify 
+    @apply bg-three rounded-md ring-1 ring-slate-400 shadow-lg shadow-slate-400  p-4 text-[19px] font-semibold text-primary min-w-[250px] text-justify 
   }
 
   .input {
-    @apply outline-none w-[300px] sm:w-[350px] ring-1 ring-slate-400 shadow-sm shadow-slate-300;
+    @apply outline-none w-[300px] sm:w-[350px] text-[18px] ring-1 ring-slate-400 shadow-lg shadow-slate-400  h-[45px];
   }
     .tech-tooltip{
-    @apply group-hover:block absolute -top-7 left-0  hidden p-1  rounded-lg bg-slate-400 text-white text-[12px] 
+    @apply group-hover:block absolute -top-7 left-0  hidden p-1  rounded-lg bg-three text-white text-[12px] ring-1 ring-slate-400 shadow-lg shadow-slate-400
   }
   .flex-row-c{
     @apply flex flex-row  items-center
@@ -55,7 +66,7 @@
     gap-4;
   }
   .flex-c {
-    @apply flex flex-col gap-6;
+    @apply flex flex-col  gap-6;
   }
   .flex-col-cen {
     @apply flex flex-col justify-center items-center;
@@ -64,17 +75,17 @@
     @apply flex flex-row justify-between items-center;
   }
   .green-btn{
-    @apply bg-green-400 p-2 font-semibold  rounded-full w-[130px] h-[40px] text-white my-4 cursor-pointer
+    @apply bg-green-400  p-2 font-semibold  rounded-full w-[130px] h-[40px] text-white my-4 cursor-pointer ring-1 ring-slate-400 shadow-lg shadow-slate-400
   }
   .red-button{
-    @apply bg-red-500 font-semibold p-2 w-[130px] rounded-full h-[40px]  text-white my-4 cursor-pointer
+    @apply bg-red-500 shadow-md shadow-red-200 font-semibold p-2 w-[130px] rounded-full h-[40px]  text-white my-4 cursor-pointer
   }
 }
 
 @layer base {
 
   h1 {
-    @apply text-[32px] uppercase;
+    @apply text-[32px] uppercase font-bold;
   }
 
   h2 {

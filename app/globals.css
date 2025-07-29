@@ -46,7 +46,7 @@
   @apply flex flex-row items-center justify-around 
  }
   .text-card{
-    @apply bg-three rounded-md ring-1 ring-slate-400 shadow-lg shadow-slate-400  p-4 text-[19px] font-semibold text-primary min-w-[250px] text-justify 
+    @apply bg-three rounded-md ring-1 ring-slate-400 shadow-lg shadow-slate-400  p-4 text-[19px] font-semibold  min-w-[250px] text-justify text-white m-4
   }
 
   .input {
@@ -85,17 +85,17 @@
 @layer base {
 
   h1 {
-    @apply text-[32px] uppercase font-bold;
+    @apply text-[28px] sm:text-[32px] uppercase font-bold;
   }
 
   h2 {
-    @apply text-[24px] font-semibold;
+    @apply text-[21px] sm:text-[24px] font-semibold;
   }
   h3 {
-    @apply text-[18px] font-medium;
+    @apply text-[15px] sm:text-[18px] font-medium;
   }
   p {
-    @apply text-[14px] font-light;
+    @apply text-[13px] sm:text-[14px] font-light;
   }
 }
 /*

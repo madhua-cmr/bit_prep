@@ -21,10 +21,10 @@ getInterviews({userId:user?.id})
       <section className="bg-[url('/home.jpg')] bg-cover bg-center w-screen text-a">
         <div className="relative  h-[450px]">
           
-             <div className=" w-full absolute md:left-5 lg:left-56 p-16">
+             <div className=" w-full absolute left-2 top-7 sm:top-0 md:left-5 lg:left-56 p-4 sm:p-14">
           
           
-          <div className="flex flex-col gap-8 max-w-[500px]">
+          <div className="flex flex-col gap-2 sm:gap-8 max-w-[500px]">
             <h1>Ace Your Next Interview with AI-Powered Mock Interviews</h1>
             <h2 className=" text-justify">
               Practice anytime, get instant feedback, and boost your confidence
